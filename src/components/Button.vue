@@ -12,10 +12,10 @@ export default {
     text: String,
     color: String,
   },
-  methods:{
-      onClick(){
-          console.log('click');
-      }
-  }
+  methods: {
+    onClick() {
+      this.$emit("btn-click");
+    },
+  },
 };
 </script>
