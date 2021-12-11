@@ -10,7 +10,7 @@
 
 <style scoped>
 a {
-  color: #333;
+  color: #000;
 }
 footer {
   margin-top: 30px;
