@@ -1,5 +1,5 @@
 {
-  "tasks": [
+  "todos": [
     {
       "id": 1,
       "text": "Doctors appointment",
@@ -11,6 +11,12 @@
       "text": "meeting at school",
       "day": "March 3rd at 1:30pm",
       "reminder": false
+    },
+    {
+      "text": "Hello Günter",
+      "day": "zdfgdafzgdz",
+      "reminder": false,
+      "id": 3
     }
   ]
 }

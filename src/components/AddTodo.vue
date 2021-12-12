@@ -1,8 +1,8 @@
 <template>
   <form @submit="onSubmit" class="add-form">
     <div class="form-control">
-      <label>Task</label>
-      <input type="text" v-model="text" name="text" placeholder="Add Task" />
+      <label>Todo</label>
+      <input type="text" v-model="text" name="text" placeholder="Add Todo" />
     </div>
     <div class="form-control">
       <label>Day & Time</label>
@@ -17,13 +17,13 @@
       <label>Set Reminder</label>
       <input type="checkbox" v-model="reminder" name="reminder" />
     </div>
-    <input type="submit" value="Save Task" class="btn btn-block" />
+    <input type="submit" value="Save Todo" class="btn btn-block" />
   </form>
 </template>
 
 <script>
 export default {
-  name: "AddTask",
+  name: "AddTodo",
   data() {
     return {
       text: "",
@@ -35,16 +35,16 @@ export default {
     onSubmit(e) {
       e.preventDefault();
       if (!this.text) {
-        alert("Please add a task");
+        alert("Please add a todo");
         return;
       }
-      const newTask = {
+      const newTodo = {
         text: this.text,
         day: this.day,
         reminder: this.reminder,
       };
 
-      this.$emit("add-task", newTask);
+      this.$emit("add-todo", newTodo);
 
       this.text = "";
       this.day = "";

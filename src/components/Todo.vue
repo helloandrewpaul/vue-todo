@@ -1,21 +1,21 @@
 <template>
   <div
-    @click="$emit('toggle-reminder', task.id)"
-    :class="[task.reminder ? 'reminder' : '', 'task']"
+    @click="$emit('toggle-reminder', todo.id)"
+    :class="[todo.reminder ? 'reminder' : '', 'todo']"
   >
     <h3>
-      {{ task.text }}
-      <i @click="$emit('delete-task', task.id)" class="fas fa-times"></i>
+      {{ todo.text }}
+      <i @click="$emit('delete-todo', todo.id)" class="fas fa-times"></i>
     </h3>
-    <p>{{ task.day }}</p>
+    <p>{{ todo.day }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Task",
+  name: "Todo",
   props: {
-    task: Object,
+    todo: Object,
   },
 };
 </script>
@@ -26,18 +26,18 @@ export default {
   color: red;
 }
 
-.task {
+.todo {
   background: #f4f4f4;
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
 }
 
-.task.reminder {
+.todo.reminder {
   border-left: 5px solid green;
 }
 
-.task h3 {
+.todo h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;

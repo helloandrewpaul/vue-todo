@@ -1,100 +1,101 @@
 <template>
   <div class="container">
     <Header
-      @toggle-add-task="toggleAddTask"
+      @toggle-add-todo="toggleAddTodo"
       title="To Do List"
-      :showAddTask="showAddTask"
+      :showAddTodo="showAddTodo"
     />
-    <div v-show="showAddTask"><AddTask @add-task="addTask" /></div>
-    <Tasks
+    <div v-show="showAddTodo"><AddTodo @add-todo="addTodo" /></div>
+    <Todos
       @toggle-reminder="toggleReminder"
-      @delete-task="deleteTask"
-      :tasks="tasks"
+      @delete-todo="deleteTodo"
+      :todos="todos"
     />
+    <router-view></router-view>
     <Footer />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
-import Tasks from "./components/Tasks";
-import AddTask from "./components/AddTask";
+import Todos from "./components/Todos";
+import AddTodo from "./components/AddTodo";
 import Footer from "./components/Footer";
 
 export default {
   name: "App",
   components: {
     Header,
-    Tasks,
-    AddTask,
+    Todos,
+    AddTodo,
     Footer,
   },
   data() {
     return {
-      tasks: [],
-      showAddTask: false,
+      todos: [],
+      showAddTodo: false,
     };
   },
   methods: {
-    toggleAddTask() {
-      this.showAddTask = !this.showAddTask;
+    toggleAddTodo() {
+      this.showAddTodo = !this.showAddTodo;
     },
-    async addTask(task) {
-      const res = await fetch("api/tasks", {
+    async addTodo(todo) {
+      const res = await fetch("api/todos", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify(task),
+        body: JSON.stringify(todo),
       });
       const data = await res.json();
-      this.tasks = [...this.tasks, data];
+      this.todos = [...this.todos, data];
     },
-    async deleteTask(id) {
+    async deleteTodo(id) {
       if (confirm("Are you sure?")) {
-        const res = await fetch(`api/tasks/${id}`, { method: "DELETE" });
+        const res = await fetch(`api/todos/${id}`, { method: "DELETE" });
 
         res.status === 200
-          ? (this.tasks = this.tasks.filter((task) => task.id !== id))
-          : alert("Error deleting task");
+          ? (this.todos = this.todos.filter((todo) => todo.id !== id))
+          : alert("Error deleting todo");
       }
     },
     async toggleReminder(id) {
-      const taskToToggle = await this.fetchTask(id);
-      const updateTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
+      const todoToToggle = await this.fetchTodo(id);
+      const updateTodo = { ...todoToToggle, reminder: !todoToToggle.reminder };
 
-      const res = await fetch(`api/tasks/${id}`, {
+      const res = await fetch(`api/todos/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify(updateTask),
+        body: JSON.stringify(updateTodo),
       });
 
       const data = await res.json();
 
-      this.tasks = this.tasks.map((task) =>
-        task.id === id ? { ...task, reminder: data.reminder } : task
+      this.todos = this.todos.map((todo) =>
+        todo.id === id ? { ...todo, reminder: data.reminder } : todo
       );
     },
-    async fetchTasks() {
-      const res = await fetch("api/tasks");
+    async fetchTodos() {
+      const res = await fetch("api/todos");
 
       const data = await res.json();
 
       return data;
     },
-    async fetchTask(id) {
-      const res = await fetch(`api/tasks/${id}`);
+    async fetchTodo(id) {
+      const res = await fetch(`api/todos/${id}`);
 
       const data = await res.json();
 
       return data;
     },
   },
-  // life cycle
-  async created() {
-    this.tasks = await this.fetchTasks();
+
+async created() {
+    this.todos = await this.fetchTodos();
   },
 };
 </script>
