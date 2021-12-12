@@ -8,8 +8,6 @@
   </div>
 </template>
 
-
-
 <script>
 import Todo from "./Todo";
 export default {
