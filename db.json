@@ -1,22 +1,16 @@
 {
   "todos": [
     {
-      "id": 1,
-      "text": "Doctors appointment",
-      "day": "March 1st at 2:30pm",
-      "reminder": false
+      "text": "Get laundry detergent",
+      "day": "December 30th at 14h",
+      "reminder": true,
+      "id": 1
     },
     {
-      "id": 2,
-      "text": "meeting at school",
-      "day": "March 3rd at 1:30pm",
-      "reminder": false
-    },
-    {
-      "text": "Hello Günter",
-      "day": "zdfgdafzgdz",
+      "text": "Chop fire wood",
+      "day": "January 4th at 8h",
       "reminder": false,
-      "id": 3
+      "id": 2
     }
   ]
 }
