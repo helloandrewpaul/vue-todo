@@ -1,10 +1,11 @@
 <template>
   <header>
     <h1>{{ title }}</h1>
-    <Button
+    <Button 
+      v-show="homePage"
       @btn-click="$emit('toggle-add-todo')"
-      :text="!showAddTodo ? 'Add todo' : 'Close'"
-      :color="!showAddTodo ? 'green' : 'red'"
+      :text="!showAddTodo ? 'Add Todo' : 'Close'"
+      :color="!showAddTodo ? 'black' : 'red'"
     />
   </header>
 </template>
@@ -20,6 +21,15 @@ export default {
   components: {
     Button,
   },
+  computed:{
+    homePage(){
+    if (this.$route.path === '/'){
+      return true
+    } else {
+      return false
+    }
+    }
+  }
 };
 </script>
 
