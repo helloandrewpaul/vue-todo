@@ -5,7 +5,6 @@
       title="To Do List"
       :showAddTodo="showAddTodo"
     />
-
     <router-view :showAddTodo='showAddTodo'></router-view>
     <Footer />
   </div>
@@ -31,13 +30,10 @@ export default {
       this.showAddTodo = !this.showAddTodo;
     },
   },
-
-
 };
 </script>
 
 <style>
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
 * {
@@ -84,5 +80,4 @@ body {
   display: block;
   width: 100%;
 }
-
 </style>
