@@ -43,7 +43,6 @@ export default {
     async deleteTodo(id) {
       if (confirm("Are you sure?")) {
         const res = await fetch(`api/todos/${id}`, { method: "DELETE" });
-
         res.status === 200
           ? (this.todos = this.todos.filter((todo) => todo.id !== id))
           : alert("Error deleting todo");
@@ -52,7 +51,6 @@ export default {
     async toggleReminder(id) {
       const todoToToggle = await this.fetchTodo(id);
       const updateTodo = { ...todoToToggle, reminder: !todoToToggle.reminder };
-
       const res = await fetch(`api/todos/${id}`, {
         method: "PUT",
         headers: {
@@ -60,29 +58,22 @@ export default {
         },
         body: JSON.stringify(updateTodo),
       });
-
       const data = await res.json();
-
       this.todos = this.todos.map((todo) =>
         todo.id === id ? { ...todo, reminder: data.reminder } : todo
       );
     },
     async fetchTodos() {
       const res = await fetch("api/todos");
-
       const data = await res.json();
-
       return data;
     },
     async fetchTodo(id) {
       const res = await fetch(`api/todos/${id}`);
-
       const data = await res.json();
-
       return data;
     },
   },
-
 async created() {
     this.todos = await this.fetchTodos();
   },
