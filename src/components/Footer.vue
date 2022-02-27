@@ -9,6 +9,7 @@
 a {
   color: #000;
 }
+
 footer {
   margin-top: 30px;
   text-align: center;
